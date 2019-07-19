@@ -1,0 +1,35 @@
+<div class="mycal_container">
+    <div class="dispScr">{{ screenVal }}</div>
+    <span *ngIf="ac; then allclear else clearentry"></span>
+    <ng-template #allclear>
+        <div class="reset AllClear" (click)="clear('ac')">AC</div>
+    </ng-template>
+    <ng-template #clearentry>
+        <div class="reset clearEntry" (click)="clear('ce')">CE</div>
+    </ng-template>
+    <div class="digits dig9" (click)='num(9)'>9</div>
+    <div class="digits dig8" (click)='num(8)'>8</div>
+    <div class="digits dig7" (click)='num(7)'>7</div>
+    <!-- operators -->
+    <div class="operators op-divide" (click)="op('divide')">&#xf7;</div>
+    <!-- end.operators -->
+    <div class="digits dig6" (click)='num(6)'>6</div>
+    <div class="digits dig5" (click)='num(5)'>5</div>
+    <div class="digits dig4" (click)='num(4)'>4</div>
+    <!-- operators -->
+    <div class="operators op-times" (click)="op('times')">&#xd7;</div>
+    <!-- end.operators -->
+    <div class="digits dig3" (click)='num(3)'>3</div>
+    <div class="digits dig2" (click)='num(2)'>2</div>
+    <div class="digits dig1" (click)='num(1)'>1</div>
+    <!-- operators -->
+    <div class="operators op-minus" (click)="op('minus')">&#x2212;</div>
+    <div class="digits dig0" (click)='num(0)'>0</div>
+    <!-- end.operators -->
+    <!-- zero digit & dot -->
+    
+    <div class="digits dot" (click)="num('dot')">.</div>
+    <div class="operators op-add" (click)="op('plus')">&#x2b;</div>
+    <!-- operators -->
+    <div class="operators op-equalto" (click)="equalto()">&#x3d;</div>
+</div>
