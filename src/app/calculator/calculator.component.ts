@@ -203,37 +203,6 @@ export class CalculatorComponent implements OnInit {
     }
     
   }
-  //function to clear
-  clear(e) {
-    console.log(e+'<br>'+this.screenVal+'\n'+(this.screenVal.length));
-    if(e == 'ce'){
-      if(this.screenVal == '0'){
-        this.ac = !this.ac;
-        return;
-      }
-      if(this.screenVal.substr(0,(this.screenVal.length-1)) == ''){
-        this.screenVal = '0';
-        this.ac = !this.ac;
-        return;
-      }
-      this.screenVal = this.screenVal.substr(0,(this.screenVal.length-1));
-      return;
-    }
-    this.ac = true;
-    this.screenVal = '0';
-    this.sum = 0;
-    this.item = 0;
-    this.items = [];
-    this.circuit = [];
-    this.operatorIsOn = false;
-    this.numIsOn = false;
-    this.result = '0';
-    this.resultIsDisp = false;
-    return;
-    //this.ac = !this.ac;
-    //this.screenVal = e;
-  }
-
 
   //restructure circuit
   restructureCircuit (sw:boolean, scrnVal:string){
@@ -328,5 +297,75 @@ export class CalculatorComponent implements OnInit {
           //other code
           (this.resultIsDisp)? this.screenVal = this.result : this.screenVal = this.screenVal;
         }
+  }
+
+
+   //function to clear
+   clear(e) {
+    console.log(e+':Control screen\n'+this.screenVal+':Current value\nLength:'+(this.screenVal.length)+'\nCircuit'+this.circuit);
+    if(e == 'ce'){
+      if(this.screenVal == '0'){//when backspace leads to 0
+        this.ac = !this.ac;
+        return;
+      }
+      else if(this.screenVal.substr(0,(this.screenVal.length-1)) == ''){//if after applying backspace screen gets empty, we pass zero to the screen to avoid empty screen
+        this.ac = !this.ac;
+        //verify if num is activate
+        if(this.numIsOn && this.operatorIsOn) {
+          //some code
+          this.circuit[this.circuit.length-2] = 0;
+        }
+        else if(!this.numIsOn && !this.operatorIsOn){
+          //do nothing
+        }
+        else if(!this.numIsOn && this.operatorIsOn){
+          //some code
+          this.circuit[this.circuit.length-2] = 0;
+        }
+        else if(this.numIsOn && !this.operatorIsOn){
+          //some code
+          this.circuit[this.circuit.length-1] = 0;
+        }
+        this.screenVal = '0'; // Screen should display zero
+        return;
+      }
+      else if(this.screenVal.substr(0,(this.screenVal.length-1)) !== '') {//if after applying backspace screen isn't set to null
+        this.screenVal = this.screenVal.substr(0,(this.screenVal.length-1));
+        if(this.numIsOn && this.operatorIsOn){
+          //some code
+          this.circuit[this.circuit.length-2] = Number(this.screenVal);
+        }
+        else if(!this.numIsOn && !this.operatorIsOn) {
+          //do nothing
+        }
+        else if(this.numIsOn && !this.operatorIsOn){
+          //some code
+          this.circuit[this.circuit.length-1] = Number(this.screenVal);
+        }
+        else if(!this.numIsOn && this.operatorIsOn){
+          //some code
+          this.circuit[this.circuit.length-2] = Number(this.screenVal);
+        }
+      }
+      console.log('AFTER BACKSPACE\n\n'+e+':Control screen\n'+this.screenVal+':Current value\nLength:'+(this.screenVal.length)+'\nCircuit:\n'+this.circuit);
+      return;
+    } else if (e == 'ac') {
+      this.ac = true;
+      this.operatorIsOn = false;
+      this.numIsOn = false;
+      this.resultIsDisp = false;
+      ////////////\\\\\\\\\\\\\\
+      this.items = [];
+      this.circuit = [];
+      //\\\\\\\\\\\\\\\
+      this.result = '0';
+      this.screenVal = '0';
+      this.sum = 0;
+      this.item = 0;
+      
+      return;
+    }
+    //this.ac = !this.ac;
+    //this.screenVal = e;
   }
 }
