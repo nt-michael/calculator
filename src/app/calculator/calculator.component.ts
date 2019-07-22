@@ -39,9 +39,7 @@ export class CalculatorComponent implements OnInit {
       case 'plus' :
         if(this.operatorIsOn && this.numIsOn) {
           this.numIsOn = false;
-          console.log('sum operator is on and num is on - arr: '+this.circuit);
           let currentResult:number = this.getNowResult(this.circuit);
-          console.log('sum* current Result : '+currentResult);
           this.result = currentResult.toString();
           this.circuit = [];
           this.circuit.push(Number(this.result));
@@ -57,12 +55,9 @@ export class CalculatorComponent implements OnInit {
           this.numIsOn = false;
           this.circuit.push(11);
           let currentResult:number = this.initResult(this.circuit);
-          console.log('sum* Current result : '+currentResult);
-          //this.result = currentResult.toString();
           this.circuit = [];
           this.circuit.push(Number(this.result));
           this.circuit.push(11);
-          console.log('IN SUM* circuit after operator is clicked '+this.circuit);
           this.operatorIsOn = true;
         }
         else if(!this.operatorIsOn && !this.numIsOn) {//first key press is operator
@@ -74,9 +69,7 @@ export class CalculatorComponent implements OnInit {
       case 'minus' :
         if(this.operatorIsOn && this.numIsOn) {
           this.numIsOn = false;
-          console.log('minus operator is on and num is on - arr: '+this.circuit);
           let currentResult:number = this.getNowResult(this.circuit);
-          console.log('minus* current Result : '+currentResult);
           this.result = currentResult.toString();
           this.circuit = [];
           this.circuit.push(Number(this.result));
@@ -92,12 +85,9 @@ export class CalculatorComponent implements OnInit {
           this.numIsOn = false;
           this.circuit.push(10);
           let currentResult:number = this.initResult(this.circuit);
-          console.log('Current minus result : '+currentResult);
-          //this.result = currentResult.toString();
           this.circuit = [];
           this.circuit.push(Number(this.result));
           this.circuit.push(10);
-          console.log('IN MINUS* circuit after operator is clicked '+this.circuit);
           this.operatorIsOn = true;
         }
         else if(!this.operatorIsOn && !this.numIsOn) {//first key press is operator
@@ -109,9 +99,7 @@ export class CalculatorComponent implements OnInit {
       case 'divide' :
         if(this.operatorIsOn && this.numIsOn) {
           this.numIsOn = false;
-          console.log('divide operator is on and num is on - arr: '+this.circuit);
           let currentResult:number = this.getNowResult(this.circuit);
-          console.log('divide* current Result : '+currentResult);
           this.result = currentResult.toString();
           this.circuit = [];
           this.circuit.push(Number(this.result));
@@ -127,12 +115,9 @@ export class CalculatorComponent implements OnInit {
           this.numIsOn = false;
           this.circuit.push(1);
           let currentResult:number = this.initResult(this.circuit);
-          console.log('Current divide result : '+currentResult);
-          //this.result = currentResult.toString();
           this.circuit = [];
           this.circuit.push(Number(this.result));
           this.circuit.push(1);
-          console.log('IN DIVIDE* circuit after operator is clicked '+this.circuit);
           this.operatorIsOn = true;
         }
         else if(!this.operatorIsOn && !this.numIsOn) {//first key press is operator
@@ -144,9 +129,7 @@ export class CalculatorComponent implements OnInit {
       case 'times' :
         if(this.operatorIsOn && this.numIsOn) {
           this.numIsOn = false;
-          console.log('product operator is on and num is on - arr: '+this.circuit);
           let currentResult:number = this.getNowResult(this.circuit);
-          console.log('product* current Result : '+currentResult);
           this.result = currentResult.toString();
           this.circuit = [];
           this.circuit.push(Number(this.result));
@@ -162,12 +145,9 @@ export class CalculatorComponent implements OnInit {
           this.numIsOn = false;
           this.circuit.push(0);
           let currentResult:number = this.initResult(this.circuit);
-          console.log('Current product result : '+currentResult);
-          //this.result = currentResult.toString();
           this.circuit = [];
           this.circuit.push(Number(this.result));
           this.circuit.push(0);
-          console.log('IN PRODUCT* circuit after operator is clicked '+this.circuit);
           this.operatorIsOn = true;
         }
         else if(!this.operatorIsOn && !this.numIsOn) {//first key press is operator
@@ -190,33 +170,31 @@ export class CalculatorComponent implements OnInit {
         this.ac = false;
         //if dot
         if(e == 'dot'){
-          console.log(typeof(this.screenVal));
           this.screenVal = this.screenVal+'.';
           return;
         }else if(e != 'dot') {
           this.screenVal = ''+e;
-          this.restructureCircuit(this.operatorIsOn,this.screenVal);//this.circuit.push(Number(this.screenVal));
+          this.restructureCircuit(this.operatorIsOn,this.screenVal);
           return;
         }
       }else if(this.screenVal != '') {
         //if dot
         if(e == 'dot'){
-          console.log(typeof(this.screenVal)+'<br>'+this.screenVal.indexOf('.'));
           if(this.screenVal.indexOf('.') > -1){
             this.ac = false;
             this.screenVal = this.screenVal;
-            this.restructureCircuit(this.operatorIsOn,this.screenVal);//this.circuit.push(Number(this.screenVal));
+            this.restructureCircuit(this.operatorIsOn,this.screenVal);
             return;
           } else {
             this.ac = false;
             this.screenVal = this.screenVal+'.';
-            this.restructureCircuit(this.operatorIsOn,this.screenVal);//this.circuit.push(Number(this.screenVal));
+            this.restructureCircuit(this.operatorIsOn,this.screenVal);
             return;
           }
         } else if(e != 'dot'){
           this.ac = false;
           this.screenVal = this.screenVal+''+e;
-          this.restructureCircuit(this.operatorIsOn,this.screenVal);//this.circuit.push(Number(this.screenVal));
+          this.restructureCircuit(this.operatorIsOn,this.screenVal);
           return;
         }
       }
@@ -226,34 +204,32 @@ export class CalculatorComponent implements OnInit {
         this.ac = false;
         //if dot
         if(e == 'dot'){
-          console.log(typeof(this.screenVal));
           this.screenVal = this.screenVal+'.';
-          this.restructureCircuit(this.operatorIsOn,this.screenVal);//this.circuit.push(Number(this.screenVal));
+          this.restructureCircuit(this.operatorIsOn,this.screenVal);
           return;
         }else if(e != 'dot') {
           this.screenVal = ''+e;
-          this.restructureCircuit(this.operatorIsOn,this.screenVal);//this.circuit.push(Number(this.screenVal));
+          this.restructureCircuit(this.operatorIsOn,this.screenVal);
           return;
         }
       }else if(this.screenVal != '') {
         //if dot
         if(e == 'dot'){
-          //console.log(typeof(this.screenVal)+'<br>'+this.screenVal.indexOf('.'));
           if(this.screenVal.indexOf('.') > -1){
             this.ac = false;
             this.screenVal = this.screenVal;
-            this.restructureCircuit(this.operatorIsOn,this.screenVal);//this.circuit.push(Number(this.screenVal));
+            this.restructureCircuit(this.operatorIsOn,this.screenVal);
             return;
           } else {
             this.ac = false;
             this.screenVal = this.screenVal+'.';
-            this.restructureCircuit(this.operatorIsOn,this.screenVal);//this.circuit.push(Number(this.screenVal));
+            this.restructureCircuit(this.operatorIsOn,this.screenVal);
             return;
           }
         } else if(e != 'dot'){
           this.ac = false;
           this.screenVal = this.screenVal+''+e;
-          this.restructureCircuit(this.operatorIsOn,this.screenVal);//this.circuit.push(Number(this.screenVal));
+          this.restructureCircuit(this.operatorIsOn,this.screenVal);
           return;
         }
       }
@@ -267,9 +243,7 @@ export class CalculatorComponent implements OnInit {
       if(this.numIsOn) {
         //some code
         let lastVal = this.circuit[this.circuit.length-1]; //get current last value
-        console.log(lastVal+' last val of circuit before binding - operator is on')
         //update last value
-        console.log(this.circuit+' circuit after concatenation');
         (this.operatorIsOn)? this.circuit[this.circuit.length-2] = Number(scrnVal):this.circuit[this.circuit.length-1] = Number(scrnVal);;
       }
       else if(!this.numIsOn) {
@@ -285,10 +259,8 @@ export class CalculatorComponent implements OnInit {
      if(this.numIsOn){
        //some code - (to avoid getting 22 => [2,2])
        let lastVal = this.circuit[this.circuit.length-1]; //get current last value
-       console.log(lastVal+' last val of circuit before binding')
        //update last value
        this.circuit[this.circuit.length-1] = Number(scrnVal);
-       console.log(this.circuit+' circuit after concatenation');
      }
      else if (!this.numIsOn) {
        //other code - we gon' collect the last value and update it
@@ -305,25 +277,21 @@ export class CalculatorComponent implements OnInit {
     arr.splice(arr.length-1,1);
     switch(ctrlVal) {
       case 11://sum
-        console.log(arr+' result : '+arr.reduce((a, b) => a + b, 0));
         this.result = arr.reduce((a, b) => a + b, 0).toString() //store result
         this.resultIsDisp = true; // activate result
         return arr.reduce((a, b) => a + b, 0);
         break;
       case 0://product
-        console.log(arr+' product result : '+arr.reduce((a, b) => a * b));
         this.result = arr.reduce((a, b) => a * b).toString() //store result
         this.resultIsDisp = true; // activate result
         return arr.reduce((a, b) => a * b);
         break;
       case 1://division
-        console.log(arr.reduce((a, b) => a / b));
         this.result = arr.reduce((a, b) => a / b).toString() //store result
         this.resultIsDisp = true; // activate result
         return arr.reduce((a, b) => a / b);
         break;
       case 10://minus
-        console.log(arr.reduce((a, b) => a - b));
         this.result = arr.reduce((a, b) => a - b).toString() //store result
         this.resultIsDisp = true; // activate result
         return arr.reduce((a, b) => a - b);
@@ -374,10 +342,8 @@ export class CalculatorComponent implements OnInit {
   equalto() {
       //get result when an operator is clicked - difference here is the circuit array **already** contains any pre-existing ctrl value
       if(this.operatorIsOn && this.numIsOn) {
-        console.log('equal* is clicked:: Num && Operator are ON: '+this.circuit);
         let ctrlVal = this.circuit[this.circuit.length-1];
         let currentResult:number = this.getNowResult(this.circuit);
-        console.log('equal* current Result : '+currentResult);
         this.result = currentResult.toString();
         this.screenVal = this.result;
         this.circuit = [];
